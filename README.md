@@ -1,0 +1,2 @@
+# dresscode
+dress up stdin
