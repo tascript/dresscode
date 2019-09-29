@@ -2,7 +2,7 @@ use std::io::{self, Read};
 
 fn main() {
     let stdin = get_stdin().unwrap();
-    println!("{:}", stdin);
+    println!("{}", stdin);
 }
 
 fn get_stdin() -> io::Result<String> {
