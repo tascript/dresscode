@@ -1,2 +1,2 @@
 # dresscode
-dress up stdin
+dress up stdin.
