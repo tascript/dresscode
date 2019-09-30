@@ -1,3 +1,5 @@
+extern crate clap;
+use clap::{App, Arg};
 use std::io::{self, Read};
 use std::process::{Command, Stdio};
 
