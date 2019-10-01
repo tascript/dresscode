@@ -8,12 +8,6 @@ fn main() {
         .author("wataru-script")
         .about("Dress up stdin")
         .arg(
-            Arg::with_name("input")
-                .value_name("INPUT")
-                .help("stdin")
-                .required(false),
-        )
-        .arg(
             Arg::with_name("keyword")
                 .value_name("KEYWORD")
                 .help("Keyword")
@@ -21,12 +15,8 @@ fn main() {
                 .required(false),
         )
         .get_matches();
-    if let Some(input) = matches.value_of("input") {
-        println!("{}", input);
-    } else {
-        let stdin = get_stdin().unwrap();
-        println!("{}", stdin);
-    }
+    let stdin = get_stdin().unwrap();
+    println!("{}", stdin);
 }
 
 fn get_stdin() -> io::Result<String> {
