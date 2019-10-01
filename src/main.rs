@@ -16,6 +16,9 @@ fn main() {
                 .required(false),
         )
         .get_matches();
+    if atty::is(Stream::Stdin) {
+        panic!("{}", "there is no pipe");
+    }
     let stdin = get_stdin().unwrap();
     println!("{}", stdin);
 }
