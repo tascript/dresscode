@@ -5,7 +5,7 @@ use std::io::{self, Read};
 use std::process::{Command, Stdio};
 
 fn main() {
-    let matches = App::new("dragontail")
+    let matches = App::new("dresscode")
         .author("wataru-script")
         .about("Dress up stdin")
         .arg(
