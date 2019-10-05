@@ -2,6 +2,7 @@ extern crate clap;
 use atty::Stream;
 use clap::{App, Arg};
 use std::io::{self, Read};
+use std::process;
 
 fn main() {
     let matches = App::new("dresscode")
@@ -16,7 +17,8 @@ fn main() {
         )
         .get_matches();
     if atty::is(Stream::Stdin) {
-        panic!("{}", "there is no pipe");
+        println!("{}", "Error: there is no pipe!");
+        process::exit(1);
     }
     let keywords = match matches.values_of_lossy("keyword") {
         Some(k) => k,
