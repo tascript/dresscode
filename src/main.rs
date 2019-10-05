@@ -18,6 +18,10 @@ fn main() {
     if atty::is(Stream::Stdin) {
         panic!("{}", "there is no pipe");
     }
+    let keywords = match matches.values_of_lossy("keyword") {
+        Some(k) => k,
+        None => Vec::new(),
+    };
     let stdin = get_stdin().unwrap();
     println!("{}", stdin);
 }
