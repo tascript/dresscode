@@ -3,6 +3,7 @@ use atty::Stream;
 use clap::{App, Arg};
 use std::io::{self, Read};
 use std::process;
+extern crate memmap;
 
 fn main() {
     let matches = App::new("dresscode")
