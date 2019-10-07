@@ -1,7 +1,8 @@
 extern crate clap;
 use atty::Stream;
 use clap::{App, Arg};
-use std::io::{self, Read};
+use std::io;
+use std::io::prelude::*;
 use std::process;
 extern crate memmap;
 
@@ -25,14 +26,12 @@ fn main() {
         Some(k) => k,
         None => Vec::new(),
     };
-    let stdin = get_stdin().unwrap();
-    println!("{}", stdin);
+    get_stdin();
 }
 
-fn get_stdin() -> io::Result<String> {
-    let mut buf = String::new();
+fn get_stdin() {
     let stdin = io::stdin();
-    let mut handle = stdin.lock();
-    handle.read_to_string(&mut buf)?;
-    Ok(buf)
+    for l in stdin.lock().lines() {
+        println!("{}", l.unwrap());
+    }
 }
