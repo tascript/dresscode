@@ -58,3 +58,30 @@ fn get_correct_keywords(keywords: &Vec<String>) -> Vec<String> {
     }
     res.into_iter().unique().collect()
 }
+
+fn split_line_by_keywords<'a>(line: &'a String, keywords: &Vec<String>) -> Vec<&'a str> {
+    let mut matches: Vec<(usize, &str)> = vec![];
+    for kw in keywords {
+        if kw == "" {
+            continue;
+        }
+        let mut m: Vec<_> = line.match_indices(kw).collect();
+        if m.len() > 0 {
+            matches.append(&mut m);
+        }
+    }
+    matches.sort_by_key(|k| k.0);
+    let mut result: Vec<&str> = vec![];
+    let mut count: usize = 0;
+    for m in matches {
+        if m.0 != 0 {
+            result.push(&line[count..m.0]);
+        }
+        result.push(&line[m.0..(m.0 + m.1.len())]);
+        count = m.0 + m.1.len();
+    }
+    if count != line.len() {
+        result.push(&line[count..]);
+    }
+    result
+}
