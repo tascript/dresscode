@@ -19,7 +19,7 @@ ARGS:
 **example**
 
 ```
- $ tail -f README.md   | dresscode Usage ARGS Keyword License
+ $ tail -f README.md | dresscode Usage ARGS Keyword License
  ```
 
 ## License
