@@ -27,13 +27,15 @@ fn main() {
         Some(k) => get_correct_keywords(&k),
         None => Vec::new(),
     };
-    get_stdin();
+    get_stdin(&keywords);
 }
 
-fn get_stdin() {
+fn get_stdin(keywords: &Vec<String>) {
     let stdin = io::stdin();
     for l in stdin.lock().lines() {
-        println!("{}", l.unwrap());
+        let line = l.unwrap();
+        let splited_line = split_line_by_keywords(&line, keywords);
+        print_colored_line(splited_line, keywords);
     }
 }
 
@@ -97,5 +99,31 @@ fn get_colors(index: usize) -> Option<termcolor::Color> {
         4 => return Some(Color::Yellow),
         5 => return Some(Color::Blue),
         _ => return None,
+    }
+}
+
+fn print_colored_line(splited_line: Vec<&str>, keywords: &Vec<String>) {
+    let mut stdout = StandardStream::stdout(ColorChoice::Always);
+    let len = splited_line.len();
+    if len == 0 {
+        writeln!(&mut stdout, "{}", "").unwrap();
+    }
+    for i in 0..len {
+        for (ki, kw) in keywords.iter().enumerate() {
+            if splited_line[i] == kw {
+                let color = get_colors(ki);
+                stdout.set_color(ColorSpec::new().set_fg(color)).unwrap();
+                break;
+            } else {
+                stdout
+                    .set_color(ColorSpec::new().set_fg(Some(Color::White)))
+                    .unwrap();
+            }
+        }
+        if i != (len - 1) {
+            write!(&mut stdout, "{}", splited_line[i]).unwrap();
+        } else {
+            writeln!(&mut stdout, "{}", splited_line[i]).unwrap();
+        }
     }
 }
