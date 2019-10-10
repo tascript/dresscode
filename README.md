@@ -17,4 +17,6 @@ ARGS:
 ```
 **example**
 
-` $ tail -f README.md   | dresscode Usage ARGS Keyword`
+```
+ $ tail -f README.md   | dresscode Usage ARGS Keyword
+ ```
