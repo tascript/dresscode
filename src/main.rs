@@ -1,10 +1,11 @@
 extern crate clap;
 use atty::Stream;
 use clap::{App, Arg};
+use itertools::Itertools;
 use std::io;
 use std::io::prelude::*;
 use std::process;
-use itertools::Itertools;
+use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 
 fn main() {
     let matches = App::new("dresscode")
@@ -84,4 +85,17 @@ fn split_line_by_keywords<'a>(line: &'a String, keywords: &Vec<String>) -> Vec<&
         result.push(&line[count..]);
     }
     result
+}
+
+fn get_colors(index: usize) -> Option<termcolor::Color> {
+    let color_val: usize = 6;
+    match index % color_val {
+        0 => return Some(Color::Magenta),
+        1 => return Some(Color::Cyan),
+        2 => return Some(Color::Green),
+        3 => return Some(Color::Red),
+        4 => return Some(Color::Yellow),
+        5 => return Some(Color::Blue),
+        _ => return None,
+    }
 }
