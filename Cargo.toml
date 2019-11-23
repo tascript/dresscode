@@ -4,6 +4,10 @@ version = "0.1.0"
 authors = ["wataru morita"]
 edition = "2018"
 description = "Dress Up stdin"
+licence = "MIT"
+license-file = "LICENSE"
+readme = "README.md"
+keywords = ["stdin", "log"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
