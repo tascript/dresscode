@@ -7,6 +7,7 @@ description = "Dress Up stdin"
 licence = "MIT"
 license-file = "LICENSE"
 readme = "README.md"
+repository = "https://github.com/wataru-script/dresscode"
 keywords = ["stdin", "log"]
 
 [dependencies]
